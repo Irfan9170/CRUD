@@ -3,6 +3,13 @@ const app= express();
 const path=require('path')
 const PORT=3000||process.env.PORT;
 
+const bodyParser=require('body-parser')
+const methodOverride=require('method-override')
+// const { v4: uuid } = require('uuid');
+
+app.use(methodOverride("_method"));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended:true}));
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs')
@@ -22,11 +29,32 @@ friends = [
 ]
 
 app.get('/',(req,res)=>{
-    res.render('friends.ejs',{friends});
+    res.send("CRUD Without Database")
 })
 
+app.get('/friends',(req,res)=>{
+    res.render('friends',{friends});
+})
 app.get('/friends/add',(req,res)=>{
-    res.render('add.ejs');
+    res.render('add.ejs')
+})
+app.post('/friends',(req,res)=>{
+    const {id,name,Designation}=req.body;
+    
+    friends.push({id,name,Designation});
+    console.log(friends);
+    res.redirect('/friends');
+})
+
+
+app.get('/friends/:id',(req,res)=>{
+    const id=req.params.id;
+
+    const friendsInfo=friends.find(f=>f.id==id);
+    
+    console.log("hiiiiiiiiiiii")
+    res.render('info.ejs',{friendsInfo})
+
 })
 
 app.listen(PORT,()=>{
