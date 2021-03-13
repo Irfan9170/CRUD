@@ -49,11 +49,26 @@ app.post('/friends',(req,res)=>{
 
 app.get('/friends/:id',(req,res)=>{
     const id=req.params.id;
-
     const friendsInfo=friends.find(f=>f.id==id);
-    
-    console.log("hiiiiiiiiiiii")
     res.render('info.ejs',{friendsInfo})
+
+})
+
+app.get('/friends/:id/edit',(req,res)=>{
+    const id=req.params.id;
+    const friendsInfo=friends.find(f=>f.id==id);
+    res.render('edit.ejs',{friendsInfo});
+
+})
+
+app.patch('friends/:id',(req,res)=>{
+    const editFriend=req.body;
+    const id=req.params;
+    let friendsInfo=friends.find(f=>f.id==id);
+    friendsInfo.name=editFriend.name;
+    // friendsInfo.age=editFriend.age;
+    // friendsInfo.location=editFriend.location;
+    res.redirect('/friends');
 
 })
 

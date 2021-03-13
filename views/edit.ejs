@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/friends/<%=friendsInfo.id%>?_method=PATCH"  method="POST">
+        <label for="" name="id" >Id</label>
+        <input type="text" name="id" value="<%=friendsInfo.id %> "> <br><br>
+        <label for="" name="name">Name</label>
+        <input type="text" name="name" value="<%=friendsInfo.name%> "><br><br>
+        <label for="" name="Designation">Designation</label>
+        <input type="text" name="Designation" id=""value="<%=friendsInfo.Designation %> "> <br><br>
+    <button>Update</button>
+    </form>
+</body>
+</html>
