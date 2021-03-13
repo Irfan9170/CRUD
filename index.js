@@ -1,6 +1,7 @@
 const express= require('express');
 const app= express();
 const path=require('path')
+const PORT=3000||process.env.PORT;
 
 
 app.set('views',path.join(__dirname,'views'));
@@ -28,6 +29,6 @@ app.get('/friends/add',(req,res)=>{
     res.render('add.ejs');
 })
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log("Server Started");
 })
