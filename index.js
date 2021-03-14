@@ -61,15 +61,25 @@ app.get('/friends/:id/edit',(req,res)=>{
 
 })
 
-app.patch('friends/:id',(req,res)=>{
+app.patch('/friends/:id',(req,res)=>{
+    
+    const {id}=req.params;
+    
     const editFriend=req.body;
-    const id=req.params;
+    // console.log("hi1")
     let friendsInfo=friends.find(f=>f.id==id);
+    // console.log("hi2")
+    friendsInfo.id=editFriend.id;
     friendsInfo.name=editFriend.name;
-    // friendsInfo.age=editFriend.age;
-    // friendsInfo.location=editFriend.location;
+    friendsInfo.Designation=editFriend.Designation;
     res.redirect('/friends');
 
+})
+
+app.delete('/friends/:id',(req,res)=>{
+    const {id}=req.params;
+    friends=friends.filter(i=>i.id!=id);
+    res.redirect('/friends')
 })
 
 app.listen(PORT,()=>{

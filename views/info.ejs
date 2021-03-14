@@ -12,5 +12,9 @@
     <h1><%=friendsInfo.Designation %> </h1>
 
     <a href="/friends/<%=friendsInfo.id %>/edit">Edit</a>
+<br><br>
+    <form action="/friends/<%=friendsInfo.id%>?_method=DELETE" method="POST">
+        <button>DELETE</button>
+    </form>
 </body>
 </html>
